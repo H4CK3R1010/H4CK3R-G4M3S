@@ -25,57 +25,32 @@
             margin-top: 50px;
         }
         .game-button {
-            display: inline-block;
+            display: block;
             background-color: #00ff00;
             color: black;
             padding: 15px;
-            margin: 10px;
+            margin: 10px auto;
+            width: 200px;
             border-radius: 5px;
-            cursor: grab;
+            cursor: pointer;
             font-size: 20px;
-            user-select: none;
+            text-decoration: none;
         }
-        .drop-zone {
-            margin-top: 30px;
-            width: 300px;
-            height: 100px;
-            border: 2px dashed #00ff00;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #00ff00;
+        .game-button:hover {
+            background-color: #009900;
         }
     </style>
 </head>
 <body>
     <canvas id="matrix"></canvas>
     <h1>H4CK3R G4M3S</h1>
-    <p>Drag and drop a button to play a game!</p>
+    <p>Click a game below to start playing!</p>
     <div class="game-container">
-        <div class="game-button" draggable="true" ondragstart="drag(event)" data-url="https://example.com/game1">Game 1</div>
-        <div class="game-button" draggable="true" ondragstart="drag(event)" data-url="https://example.com/game2">Game 2</div>
-        <div class="game-button" draggable="true" ondragstart="drag(event)" data-url="https://example.com/game3">Game 3</div>
+        <a href="https://kzmnokkixg206ly3xoac.lite.vusercontent.net/" target="_blank" class="game-button">Game 1</a>
+        <a href="https://v0-remake-awesome-tanks.vercel.app/" target="_blank" class="game-button">Awesome Tanks</a>
     </div>
-    <div class="drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)">Drop Here to Play</div>
 
     <script>
-        function allowDrop(event) {
-            event.preventDefault();
-        }
-
-        function drag(event) {
-            event.dataTransfer.setData("text", event.target.getAttribute("data-url"));
-        }
-
-        function drop(event) {
-            event.preventDefault();
-            let url = event.dataTransfer.getData("text");
-            if (url) {
-                window.location.href = url;
-            }
-        }
-
         // Matrix Effect Background
         const canvas = document.getElementById("matrix");
         const ctx = canvas.getContext("2d");
