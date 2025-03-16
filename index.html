@@ -12,6 +12,11 @@
             text-align: center;
             overflow: hidden;
             margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         #matrix {
             position: fixed;
@@ -23,45 +28,49 @@
             z-index: -1;
         }
         .game-container {
-            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .game-button {
-            display: block;
             background-color: #00ff00;
             color: black;
             padding: 15px;
-            margin: 10px auto;
+            margin: 10px;
             width: 200px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 20px;
             text-decoration: none;
+            border: none;
         }
         .game-button:hover {
             background-color: #009900;
         }
         #game-frame {
-            width: 80vw;
-            height: 80vh;
+            width: 90vw;
+            height: 90vh;
             border: 2px solid #00ff00;
             display: none;
-            margin: auto;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
         .home-button {
-            display: block;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: #00ff00;
             color: black;
             padding: 15px;
-            margin: 20px auto;
             width: 200px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 20px;
             display: none;
+            border: none;
         }
     </style>
 </head>
@@ -69,7 +78,7 @@
     <canvas id="matrix"></canvas>
     <h1>H4CK3R G4M3S</h1>
     <p>Click a game below to start playing!</p>
-    <div class="game-container">
+    <div class="game-container" id="game-selection">
         <button class="game-button" onclick="loadGame('https://kzmnokkixg206ly3xoac.lite.vusercontent.net/')">Circle Soccer</button>
         <button class="game-button" onclick="loadGame('https://v0-remake-awesome-tanks.vercel.app/')">Tank Trouble</button>
     </div>
@@ -79,10 +88,12 @@
         function loadGame(url) {
             document.getElementById('game-frame').src = url;
             document.getElementById('game-frame').style.display = 'block';
+            document.getElementById('game-selection').style.display = 'none';
             document.querySelector('.home-button').style.display = 'block';
         }
         function goHome() {
             document.getElementById('game-frame').style.display = 'none';
+            document.getElementById('game-selection').style.display = 'flex';
             document.querySelector('.home-button').style.display = 'none';
         }
         const canvas = document.getElementById("matrix");
