@@ -11,7 +11,6 @@
             font-family: monospace;
             text-align: center;
             overflow: hidden;
-            margin: 0;
         }
         #matrix {
             position: fixed;
@@ -40,51 +39,6 @@
         .game-button:hover {
             background-color: #009900;
         }
-        #game-frame {
-            width: 80vw;
-            height: 70vh;
-            border: 2px solid #00ff00;
-            display: none;
-            margin: auto;
-        }
-        .home-button {
-            display: block;
-            background-color: #00ff00;
-            color: black;
-            padding: 15px;
-            margin: 10px auto;
-            width: 200px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 100vh;
-            background-color: rgba(0, 255, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-left: 2px solid #00ff00;
-        }
-        .sidebar button {
-            background-color: #00ff00;
-            color: black;
-            padding: 10px;
-            margin: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            width: 100px;
-            border-radius: 5px;
-        }
-        .sidebar button:hover {
-            background-color: #009900;
-        }
     </style>
 </head>
 <body>
@@ -92,50 +46,25 @@
     <h1>H4CK3R G4M3S</h1>
     <p>Click a game below to start playing!</p>
     <div class="game-container">
-        <button class="game-button" onclick="loadGame('https://kzmnokkixg206ly3xoac.lite.vusercontent.net/')">Game 1</button>
-        <button class="game-button" onclick="loadGame('https://v0-remake-awesome-tanks.vercel.app/')">Awesome Tanks</button>
-    </div>
-    <iframe id="game-frame"></iframe>
-    <button class="home-button" onclick="goHome()" style="display:none;">Home</button>
-    <div class="sidebar">
-        <button onclick="reloadGame()">Reload</button>
-        <button onclick="toggleFullscreen()">Fullscreen</button>
+        <a href="https://kzmnokkixg206ly3xoac.lite.vusercontent.net/" target="_blank" class="game-button">Circle Soccer</a>
+        <a href="https://v0-remake-awesome-tanks.vercel.app/" target="_blank" class="game-button">Tank Trouble</a>
     </div>
     <script>
-        function loadGame(url) {
-            document.getElementById('game-frame').src = url;
-            document.getElementById('game-frame').style.display = 'block';
-            document.querySelector('.home-button').style.display = 'block';
-        }
-        function goHome() {
-            document.getElementById('game-frame').style.display = 'none';
-            document.querySelector('.home-button').style.display = 'none';
-        }
-        function reloadGame() {
-            let iframe = document.getElementById('game-frame');
-            if (iframe.style.display !== 'none') {
-                iframe.src = iframe.src;
-            }
-        }
-        function toggleFullscreen() {
-            let iframe = document.getElementById('game-frame');
-            if (!document.fullscreenElement) {
-                iframe.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        }
+        // Matrix Effect Background
         const canvas = document.getElementById("matrix");
         const ctx = canvas.getContext("2d");
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
         const columns = Math.floor(canvas.width / 20);
         const drops = Array(columns).fill(0);
+
         function drawMatrix() {
             ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#00ff00";
             ctx.font = "16px monospace";
+            
             for (let i = 0; i < drops.length; i++) {
                 let text = Math.random() > 0.5 ? "1" : "0";
                 ctx.fillText(text, i * 20, drops[i] * 20);
